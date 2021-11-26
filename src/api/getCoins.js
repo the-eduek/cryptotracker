@@ -2,7 +2,7 @@ const getCoins = async () => {
     try {
         let coinData = [];
 
-        const uri = "https://min-api.cryptocompare.com/data/top/totalvolfull?limit=25&tsym=NGN";
+        const uri = "https://min-api.cryptocompare.com/data/top/totalvolfull?limit=40&tsym=NGN";
 
         const request = await fetch(uri); 
         if (!request.ok) {
