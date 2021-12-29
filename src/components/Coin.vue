@@ -1,5 +1,5 @@
 <template>
-    <li class="coin-wrapper transition-all duration-300" :class="{ favorite: coin.isFav }" :key="coin.id"  @click="favCoin">
+    <li class="coin-wrapper transition-all duration-300" :class="{ favorite: coin.isFav }"   @click="favCoin">
         <div class="h-8 w-8 md:h-12 md:w-12">
             <img :src="coin.img" :alt="coin.symbol +' img'">
         </div>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {

@@ -2,9 +2,7 @@
     <div class="pt-16 pb-12 min-h-screen max-w-5xl m-auto md:pt-24 md:pb-16">
         <div class="hero">
             <h1 class="text-white text-4xl font-black pb-2">Currency</h1>
-            <div class="select-wrapper relative w-max m-auto overflow-hidden">
-                <input type="text" value="Nigerian Naira [NGN]" class="text-center p-2 rounded-xl text-sm">
-            </div>
+            <p class="w-max m-auto p-2 rounded-xl text-sm bg-white">Nigerian Naira [NGN]</p>
         </div>
         <div class="" v-if="coins.length === 0">
             <div class="spinner">
@@ -14,7 +12,7 @@
             <p>Loading...</p>
         </div>
         <ul>
-            <Coin v-for='coin in coins' :coin='coin'/>
+            <Coin v-for='coin in coins' :coin='coin' :key="coin.id"/>
         </ul> 
     </div>
 </template>
@@ -77,9 +75,4 @@ export default {
     background-color: #f9fafb;
     @apply w-6 h-6 m-auto rounded-full relative -top-3 z-10;
 }
-
-/* .select-wrapper::before {
-    content: "";
-    @apply absolute h-full w-1/5 bg-white right-0 pointer-events-none;
-} */
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="py-16 h-screen min-w-full md:pt-20">
-        <form class="m-auto py-6 max-w-5xl relative" @submit.prevent="calcConvert">
+        <form class="m-auto py-6 max-w-5xl relative">
             <div class="w-10/12 m-auto">
                 <input type="number" ref="amtInput" placeholder="Enter amount here" min="0" v-model="amount">
             </div>
