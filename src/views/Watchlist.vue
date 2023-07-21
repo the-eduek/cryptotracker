@@ -10,7 +10,7 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import Coin from "@/components/Coin.vue"
+import Coin from "../components/Coin.vue"
 
 export default {
     components: { Coin },

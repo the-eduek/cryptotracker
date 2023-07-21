@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import ConvertModal from '@/components/ConvertModal.vue'
-import Toast from '@/components/Toast.vue'
-import getRates from '@/api/getRates.js'
+import ConvertModal from '../components/ConvertModal.vue'
+import Toast from '../components/Toast.vue'
+import getRates from '../api/getRates.js'
 import { ref, onMounted } from 'vue'
 
 export default {

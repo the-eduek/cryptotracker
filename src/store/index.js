@@ -1,5 +1,5 @@
-import { createStore } from "vuex"
-import getCoins from '@/api/getCoins.js'
+import { createStore } from "vuex";
+import getCoins from '../api/getCoins.js';
 
 const store = createStore({
     state() {
