@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import getCoins from '../api/getCoins.js';
+import getCoins from '../api/getCoins.ts';
 
 const store = createStore({
     state() {
@@ -20,19 +20,6 @@ const store = createStore({
         },
         setCoins(state, data) {
             state.coins = data
-        },
-        setError (state, payload) {
-            state.error = payload
-        }
-    },
-    actions: {
-        fetchCoins({ commit }) {
-            getCoins().then(data => {
-                commit('setCoins', data )
-            }).catch(err => {
-                commit('setError', err )
-                console.log(err)
-            })    
         }
     }
 });
