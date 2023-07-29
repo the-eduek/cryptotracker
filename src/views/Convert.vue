@@ -1,7 +1,7 @@
 <template>
-  <div class="py-16 h-screen min-w-full md:pt-20">
-    <form class="m-auto py-6 max-w-5xl relative" @submit.prevent="calculate(amount)">
-      <div class="w-10/12 m-auto">
+  <div class="p-6 pb-18 md:pb-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">    
+    <form class="m-auto py-6 relative" @submit.prevent="calculate(amount)">
+      <div class="m-auto">
         <input
           class="border w-full p-4 pt-4.5 rounded-lg text-xl"
           min="1"
@@ -19,7 +19,7 @@
         />
       </transition>
 
-      <div class="flex flex-col md:flex-row items-center py-10 md:justify-center">
+      <div class="flex flex-col md:flex-row items-center py-16 md:justify-center">
         <select class="p-1 rounded border" v-model="convertFrom">
           <option value="NGN">Nigerian Naira [NGN]</option>
           <option value="USD">US Dollar [USD]</option>
@@ -68,22 +68,7 @@ import { ref, onMounted } from 'vue';
 import ConvertModal from '../components/ConvertModal.vue';
 import Toast from '../components/Toast.vue';
 import fetchData from '../api/fetchData';
-
-interface ExchangeRate {
-  EUR: number;
-  GBP: number;
-  NGN: number;
-  USD: number;
-};
-
-interface CurrencyInfo {
-  [key: string]: ExchangeRate
-};
-
-enum ErrorType {
-  networkError,
-  valueError
-};
+import { ErrorType, CoinRate } from '../types';
 
 const amount = ref<number>();
 const amtInput = ref<HTMLInputElement | null>(null)
@@ -92,7 +77,7 @@ const convertFrom = ref('NGN')
 const convertTo = ref('BTC')
 const showModal = ref(false);
 
-const rates = ref<CurrencyInfo>();
+const rates = ref<CoinRate>();
 const isError = ref<boolean>(false);
 const toastError = ref<ErrorType>(ErrorType.networkError)
 
@@ -100,7 +85,7 @@ onMounted(() => {
   const uri = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,XRP,SOL,DOGE,BNB,ADA,SHIB&tsyms=USD,EUR,NGN,GBP";
 
   fetchData(uri).then((data): void => {
-    rates.value = <CurrencyInfo>data;
+    rates.value = <CoinRate>data;
   }).catch((error) => {
     console.error(error.message);
     isError.value = true;

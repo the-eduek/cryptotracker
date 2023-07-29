@@ -20,8 +20,8 @@ interface Props {
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  (e: 'closeEvent'): void;
-  (e: 'clearEvent'): void;
+  (event: 'closeEvent'): void;
+  (event: 'clearEvent'): void;
 }>();
 
 function closeModal() : void {

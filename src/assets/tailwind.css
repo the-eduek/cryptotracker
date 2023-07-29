@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-slate-50 font-space text-center text-neutral-600;
+}
+
+.route-enter-from, 
+.route-leave-to {
+  @apply opacity-0;
+}
+
+.route-enter-active,
+.route-leave-active {
+  @apply ease-out duration-300 transition-opacity;
+}
+
+.router-link-active.router-link-exact-active {
+  @apply font-medium text-purple-600;
+}
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -10,6 +30,18 @@
   to {
     opacity: 1;
   }
+}
+
+.toast-enter-active {
+  animation: fade 300ms ease-in-out;
+}
+  
+.toast-leave-to {
+  @apply opacity-0;
+}
+
+.toast-leave-active {
+  @apply duration-300 ease-in-out transition;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -21,14 +53,14 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.toast-enter-active {
-  animation: fade 300ms ease-in-out;
-}
-  
-.toast-leave-to {
-  opacity: 0;
+.positive {
+  @apply text-green-500;
 }
 
-.toast-leave-active {
-  transition: all 300ms ease-in-out;
+.negative {
+  @apply text-red-500;
+}
+
+.favorite {
+  @apply bg-purple-50 border border-purple-500 shadow-none transition;
 }

@@ -14,9 +14,9 @@ const router = createRouter({
       component: () => import('../views/Convert.vue')
     },
     {
-      path: '/watchlist',
-      name: 'Watchlist',
-      component: () => import('../views/Watchlist.vue')
+      path: '/coins',
+      name: 'CoinsList',
+      component: () => import('../views/CoinsList.vue')
     }
   ]
 })
