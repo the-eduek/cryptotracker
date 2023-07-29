@@ -1,9 +1,9 @@
 <template>
   <div class="p-6 pb-18 md:pb-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">    
     <form class="m-auto py-6 relative" @submit.prevent="calculate(amount)">
-      <div class="m-auto">
+      <div class="bg-white m-auto">
         <input
-          class="border w-full p-4 pt-4.5 rounded-lg text-xl"
+          class="bg-transparent border border-neutral-500 outline-none p-4 py-2 rounded-md focus:outline-purple-200 w-full"
           min="1"
           placeholder="Enter amount here"
           ref="amtInput"
@@ -12,31 +12,28 @@
         >
       </div>
 
-      <transition name="toast">
+      <Transition name="toast">
         <Toast 
           v-if="isError"
           :toast-error="toastError"
         />
-      </transition>
+      </Transition>
 
       <div class="flex flex-col md:flex-row items-center py-16 md:justify-center">
-        <select class="p-1 rounded border" v-model="convertFrom">
+        <select class="border border-neutral-300 p-2 rounded" v-model="convertFrom">
           <option value="NGN">Nigerian Naira [NGN]</option>
           <option value="USD">US Dollar [USD]</option>
           <option value="GBP">British Pound [GBP]</option>
           <option value="EUR">Euro [EUR]</option>
         </select>
           
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-24 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        <div class="my-5 md:mx-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 transform rotate-90 md:rotate-0 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
           </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-8 md:hidden" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M5 12a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L5 6.414V12zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
-          </svg>
-        </p>
+        </div>
 
-        <select class="p-1 rounded border" v-model="convertTo">
+        <select class="border border-neutral-300 p-2 rounded" v-model="convertTo">
           <option value='BNB'>Binance [BNB]</option>
           <option value='BTC'>Bitcoin [BTC]</option>
           <option value="ADA">Cardano [ADA]</option>
@@ -49,7 +46,7 @@
       </div>
 
       <div>
-        <button class="py-1 w-1/2 text-lg font-bold rounded bg-purple-700 text-white" type="submit">Convert</button>
+        <button class="bg-purple-700 font-medium px-2 py-4 rounded text-lg text-white w-2/3" type="submit">Convert</button>
       </div>
     </form>
 
