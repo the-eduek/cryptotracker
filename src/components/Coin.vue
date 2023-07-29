@@ -1,6 +1,6 @@
 <template>
-  <li :class="['bg-white border duration-300 flex items-center my-5 px-4 py-5 rounded-md shadow-inner hover:shadow-none transition', { favorite: isFavCoin }]">
-    <div class="h-8 w-8 md:h-12 md:w-12">
+  <li :class="['bg-white border duration-300 flex items-center my-5 last:mb-20 px-4 py-5 rounded-md shadow-inner hover:shadow-none transition', { favorite: isFavCoin }]">
+    <div class="h-0 min-[280px]:h-8 md:h-12 w-0 min-[280px]:w-8 md:w-12">
       <img :src="coin.img" :alt="coin.symbol +' img'">
     </div>
 
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeMount } from 'vue';
+import { computed } from 'vue';
 import { useStore } from '../store';
 import { Coin } from '../types';
 
@@ -52,9 +52,14 @@ function processToWatchlist() : void {
 };
 
 function formatNumber(num: number) : string {
-  const value = num.toFixed(2);
-  const valueTrunc = Math.trunc(num);
+  const numString : string = num.toFixed(2);
+  const valueTrunc : number  = Math.trunc(num);
+  const newValueTrunc: string = valueTrunc >=  99999.99 ? 
+    valueTrunc >= 1000000 ? 
+    `${(valueTrunc / 1000000).toFixed(2)}M` : 
+    `${(valueTrunc / 1000).toFixed(2)}k` : 
+    valueTrunc.toLocaleString();
 
-  return `${valueTrunc.toLocaleString()}.${value.substring(value.length - 2)}`;
+  return valueTrunc > 99999.99 ? newValueTrunc: `${newValueTrunc}.${numString.substring(numString.length - 2)}`;
 };
 </script>
