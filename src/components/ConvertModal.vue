@@ -1,10 +1,11 @@
 <template>
-  <div class="fixed w-screen h-screen top-0 left-0 bg-gray-500 z-10 bg-opacity-70" @click.self="closeModal">
-    <div class="h-1/2 w-full relative top-1/2 bg-purple-500 rounded-t-3xl text-white py-6 flex justify-between flex-col">
-      <p class="text-5xl font-mono font-semibold">{{ amt.toFixed(5) }} </p>
-      <p class="text-lg font-bold">{{ coin }}</p>
+  <div class="bg-black/10 backdrop-blur-[1.5px] fixed flex h-full left-0 top-0 w-full z-20" @click.self="closeModal">
+    <div class="bg-purple-500 flex flex-col  items-center mt-auto px-6 py-10 rounded-t-2xl text-white top-1/2 w-full">
+      <p class="font-medium pb-54 text-3xl">{{ amt.toFixed(3) }} {{ coinType }}</p>
 
-      <img src="../assets/img/img2.svg" class="object-contain object-top flex-1 w-full px-8 pt-8" alt="">
+      <div class="flex-1 p-4 max-w-md w-4/5">
+        <img src="../assets/img/img2.svg" class=" h-full object-contain object-bottom w-full" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -13,7 +14,7 @@
 import { onUnmounted } from 'vue';
 
 interface Props {
-  coin: string;
+  coinType: string;
   amt: number;
 };
 
