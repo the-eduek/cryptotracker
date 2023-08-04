@@ -1,8 +1,8 @@
 <template>
   <div class="p-6 md:px-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
-    <ul v-if="!isLoading">
+    <ul v-if="!isLoading" class="md:grid">
       <CoinVue
-        v-for='coin in savedCoins'
+        v-for='coin in filteredCoins'
         :coin='coin'
       />
     </ul>
@@ -52,4 +52,6 @@ const coins = computed<Array<Coin>>(() => store.state.coins);
 const savedCoins = computed<Array<Coin>>(() => store.state.savedCoins);
 const isLoading = computed<boolean>(() => store.state.isLoading);
 const isLoadingError = computed<boolean>(() => store.state.isLoadingError);
+
+const filteredCoins = computed(() => savedCoins.value.sort((a: Coin, b: Coin) => b.percentage - a.percentage));
 </script>
