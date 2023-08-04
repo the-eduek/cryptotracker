@@ -27,7 +27,7 @@
             <option value="NGN">Nigerian Naira [NGN]</option>
             <option value="USD">US Dollar [USD]</option>
             <option value="GBP">British Pound [GBP]</option>
-            <option value="EUR">Euro [EUR]</option>
+            <option value="EUR">European Euro [EUR]</option>
           </select>
         </div>
 
@@ -40,20 +40,19 @@
         <div>
           <label class="block font-medium" for="crypto">select crypto to convert to</label>
           <select class="dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertTo" name="crypto" title="crpyto to convert to">
-            <option value='BNB'>Binance [BNB]</option>
-            <option value='BTC'>Bitcoin [BTC]</option>
-            <option value="ADA">Cardano [ADA]</option>
-            <option value="DOGE">Dogecoin [DOGE]</option>
-            <option value="ETH">Ethereum [ETH]</option>
-            <option value="XRP">Ripple [XRP]</option>
-            <option value="SHIB">Shiba Inu [SHIB]</option>
-            <option value="SOL">Solana [SOL]</option>
+            <option 
+              v-for="(coin, index) in convertOptions"
+              :key="index" 
+              :value="coin.symbol"
+            >
+              {{ coin.name }} [{{ coin.symbol }}]
+            </option>
           </select>
         </div>
       </div>
 
       <div>
-        <button class="bg-purple-600 font-medium dark:outline-purple-50  px-2 py-4 md:py-5 rounded text-lg md:text-xl text-white w-2/3 max-w-sm" type="submit">Convert</button>
+        <button class="bg-purple-600 font-medium dark:outline-purple-50 px-2 py-4 md:py-5 rounded text-lg md:text-xl text-white w-2/3 max-w-sm" type="submit">Convert</button>
       </div>
     </form>
 
@@ -72,25 +71,47 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { computed, ref, onMounted } from 'vue';
+import { useStore } from '../store';
+import { ErrorType, Coin, CoinRate } from '../types';
+import fetchData from '../functions/fetchData';
 import ConvertModal from '../components/ConvertModal.vue';
 import Toast from '../components/Toast.vue';
-import fetchData from '../functions/fetchData';
-import { ErrorType, CoinRate } from '../types';
+
+const store  = useStore();
+const savedCoins = computed<Array<Coin>>(() => store.state.savedCoins);
 
 const amount = ref<number>();
-const amtInput = ref<HTMLInputElement | null>(null)
-const convertedAmt = ref<number>(0)
-const convertFrom = ref<string>('NGN')
-const convertTo = ref<string>('BTC')
+const amtInput = ref<HTMLInputElement | null>(null);
+const convertedAmt = ref<number>(0);
+const convertFrom = ref<string>(store.state.currency);
+const convertTo = ref<string>('BTC');
 const showModal = ref<boolean>(false);
 
 const rates = ref<CoinRate>();
 const isError = ref<boolean>(false);
-const toastError = ref<ErrorType>(ErrorType.networkError)
+const toastError = ref<ErrorType>(ErrorType.networkError);
+
+const convertOptions = computed<Array<Coin> | Array<{name: string, symbol: 'BTC' | 'ETH' | 'SOL'}>>(() => {
+  if (savedCoins.value.length) return savedCoins.value;
+  else return [
+    {
+      name: 'Bitcoin',
+      symbol: 'BTC'
+    },
+    {
+      name: 'Ethereum',
+      symbol: 'ETH'
+    },
+    {
+      name: 'Solana',
+      symbol: 'SOL'
+    }
+  ];
+});
 
 onMounted(() => {
-  const uri : string = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,XRP,SOL,DOGE,BNB,ADA,SHIB&tsyms=USD,EUR,NGN,GBP";
+  const uri : string = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${convertOptions.value.map(coin => coin.symbol)}&tsyms=USD,EUR,NGN,GBP`;
 
   fetchData(uri).then((data): void => {
     rates.value = <CoinRate>data;
