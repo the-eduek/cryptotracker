@@ -13,6 +13,7 @@ export interface State {
   savedCoins: Array<Coin>;
   isLoading: boolean;
   isLoadingError: boolean;
+  theme: ThemeType;
 };
 
 export interface CoinRate {
@@ -30,6 +31,11 @@ export type ExchangeRate = Record<CurrencyName, number>;
 export enum ErrorType {
   networkError,
   valueError
+};
+
+export enum ThemeType {
+  'light',
+  'dark'
 };
 
 export const allCurrencies: CurrencyInfo = {

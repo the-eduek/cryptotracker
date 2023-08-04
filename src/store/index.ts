@@ -1,7 +1,6 @@
 import { InjectionKey } from 'vue';
 import { createStore, useStore as vuexUseStore,  Store } from 'vuex';
-import { Coin, CurrencyName, State } from '../types';
-
+import { Coin, State, ThemeType } from '../types';
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
@@ -12,7 +11,8 @@ export const store = createStore<State>({
       currency: 'NGN', 
       savedCoins: [],
       isLoading: true,
-      isLoadingError: false
+      isLoadingError: false,
+      theme: ThemeType.light
     }
   },
   mutations: {
@@ -35,6 +35,9 @@ export const store = createStore<State>({
     },
     setIsLoadingError(state: State, data: boolean) : void {
       state.isLoadingError = data;
+    },
+    setTheme(state: State, data: ThemeType) : void {
+      state.theme = data;
     }
   }
 });
