@@ -12,7 +12,7 @@
           v-model="amount" 
         >
 
-        <Transition name="toast">
+        <Transition name="fade">
           <Toast
             v-if="isError"
             :toastError="toastError"

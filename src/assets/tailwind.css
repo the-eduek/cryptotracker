@@ -35,15 +35,15 @@ body {
   }
 }
 
-.toast-enter-active {
+.fade-enter-active {
   animation: fade 300ms ease-in-out;
 }
   
-.toast-leave-to {
+.fade-leave-to {
   @apply opacity-0;
 }
 
-.toast-leave-active {
+.fade-leave-active {
   @apply duration-300 ease-in-out transition;
 }
 

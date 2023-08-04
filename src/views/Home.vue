@@ -1,6 +1,6 @@
 <template>
   <div class="p-6 md:px-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
-    <ul>
+    <ul v-if="!isLoading">
       <CoinVue
         v-for='coin in savedCoins'
         :coin='coin'
@@ -8,7 +8,7 @@
     </ul>
 
     <Loader v-if="isLoading" />
-
+    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">an error occured with getting data, please try again 😕</p>
     <div v-if="!savedCoins.length && !isLoadingError && !isLoading" class="flex flex-col items-center">
       <div class="p-8 max-w-lg">
         <img src="../assets/img/img2.svg" alt="">
@@ -36,9 +36,7 @@
         </router-link>
       </div>
     </div>
-
-    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">an error occured with getting data, please try again 😕</p>
-  </div>
+ </div>
 </template>
 
 <script setup lang="ts">
