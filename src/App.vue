@@ -13,9 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, onBeforeMount, watch } from 'vue';
 import { useStore } from './store';
-import { Coin, CurrencyName } from './types';
+import { Coin, CurrencyName, ThemeType } from './types';
 import getCoins from './functions/getCoins'; 
 import Header from '../src/components/Header.vue';
 import Nav from '../src/components/Nav.vue';
@@ -45,5 +45,17 @@ watch(currency, async () => {
   store.commit('setIsLoading', false);
 }, {
   immediate: true
+});
+
+const theme = computed<ThemeType>(() => store.state.theme);
+const localTheme = <CurrencyName>JSON.parse(localStorage.getItem('localTheme') || "null");
+
+onBeforeMount(() => {
+  const topElt = <HTMLHtmlElement>document.querySelector('html');
+
+  if (localTheme) store.commit('setTheme', localTheme);
+  else localStorage.setItem("localTheme", JSON.stringify(theme.value));
+
+  if (theme.value === ThemeType.dark) topElt.classList.add('dark');
 });
 </script>
