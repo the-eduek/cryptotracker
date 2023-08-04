@@ -102,6 +102,7 @@ onUnmounted(() => {
 const currencyVal = ref<CurrencyName>(store.state.currency);
 
 watch(currencyVal, () => {
-  store.commit('setCurrency', currencyVal.value)
+  store.commit('setCurrency', currencyVal.value);
+  localStorage.setItem('localCurrency', JSON.stringify(currencyVal.value));
 });
 </script>

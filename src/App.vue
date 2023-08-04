@@ -24,8 +24,11 @@ const store = useStore();
 
 const currency = computed<CurrencyName>(() => store.state.currency);
 const localSavedCoins = <Array<number>>JSON.parse(localStorage.getItem('localSavedCoins') || "[]");
+const localCurrency = <CurrencyName>JSON.parse(localStorage.getItem('localCurrency') || "null");
 
 watch(currency, async () => {
+  if (localCurrency) store.commit('setCurrency', localCurrency);
+
   const uri = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=${currency.value}`;
   store.commit('setIsLoading', true);
 
