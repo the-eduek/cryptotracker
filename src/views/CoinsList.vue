@@ -1,5 +1,5 @@
 <template>
-  <div class="py-6 m-auto min-h-[calc(100vh-5rem)] max-w-6xl">
+  <div class="py-6 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
     <div class="bg-neutral-50 dark:bg-neutral-800 duration-300 sticky -top-[1px] transition">
       <div class="py-4 md:py-6 px-6 md:px-16 relative after:absolute after:bg-gradient-to-b after:bottom-0 after:content-[''] after:duration-300 after:from-neutral-50 dark:after:from-neutral-800 after:from-0% after:h-5 md:after:h-6 after:left-0 after:pointer-events-none after:to-[rgba(255,255,255,0)] after:to-100% after:transition after:translate-y-full after:w-full">
         <input
