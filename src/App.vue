@@ -27,7 +27,7 @@ const localSavedCoins = <Array<number>>JSON.parse(localStorage.getItem('localSav
 
 
 onBeforeMount(async () => {
-  const uri = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=70&tsym=${currency.value}`;
+  const uri = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=${currency.value}`;
 
   try {
     const allCoins : Array<Coin> = await getCoins(uri, currency.value);
