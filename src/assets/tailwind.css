@@ -5,7 +5,10 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-slate-50 font-space text-center text-neutral-600;
+}
+
+body {
+  @apply bg-neutral-50 dark:bg-neutral-800 duration-300 font-grotesk text-center text-neutral-600 dark:text-neutral-200 transition;
 }
 
 .route-enter-from, 
@@ -19,7 +22,7 @@ html {
 }
 
 .router-link-active.router-link-exact-active {
-  @apply font-medium text-purple-600;
+  @apply font-medium text-purple-600 dark:text-white;
 }
 
 @keyframes fade {
@@ -44,6 +47,24 @@ html {
   @apply duration-300 ease-in-out transition;
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.slide-in-enter-active {
+  animation: slide-in 300ms ease-in-out;
+}
+
+.slide-in-leave-active {
+  animation: slide-in 300ms ease-in-out alternate-reverse;
+}
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -51,16 +72,4 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
-}
-
-.positive {
-  @apply text-green-500;
-}
-
-.negative {
-  @apply text-red-500;
-}
-
-.favorite {
-  @apply bg-purple-50 border border-purple-500 shadow-none transition;
 }

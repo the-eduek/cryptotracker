@@ -1,5 +1,5 @@
 <template>
-  <li :class="['bg-white border duration-300 flex items-center my-5 last:mb-20 px-4 py-5 rounded-md shadow-inner hover:shadow-none transition', { favorite: isFavCoin }]">
+  <li :class="['border duration-300 flex items-center my-6 last:mb-20 px-4 py-5 rounded-md shadow-inner hover:shadow-none transition', { 'bg-purple-50 dark:bg-neutral-700 border-purple-500 dark:border-purple-50 shadow-none transition': isFavCoin }, { 'bg-white dark:bg-stone-800 dark:border-neutral-600': !isFavCoin }]">
     <div class="h-0 min-[280px]:h-8 md:h-12 w-0 min-[280px]:w-8 md:w-12">
       <img :src="coin.img" :alt="coin.symbol +' img'">
     </div>
@@ -12,7 +12,7 @@
 
       <div class="flex items-start justify-between pt-0.5">
         <p class="text-left mr-4">{{ coin.name }}</p>
-        <p class="text-gray-400 text-sm" :class="{ positive: coin.percentage > 0, negative: coin.percentage < 0}">{{ coin.percentage.toFixed(2) }}%</p>
+        <p class="text-gray-400 text-sm" :class="{ 'text-green-500 ': coin.percentage > 0, 'text-red-500': coin.percentage < 0 }">{{ coin.percentage.toFixed(2) }}%</p>
       </div>
     </div>
 
@@ -26,6 +26,7 @@
       </svg>
     </button>
   </li>
+
 </template>
 
 <script setup lang="ts">

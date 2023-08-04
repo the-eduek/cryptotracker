@@ -1,33 +1,35 @@
 <template>
-  <div class="p-6 pb-18 md:pb-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
-    <div class="bg-white relative mb-8">      
-      <input
-        class="bg-transparent border border-neutral-500 outline-none pl-10 p-4 py-2 rounded-md focus:outline-purple-200  w-full"
-        placeholder="search all coins..."
-        type="text"
-        v-model="searchText"
-      >
+  <div class="py-6 m-auto min-h-[calc(100vh-5rem)] max-w-6xl">
+    <div class="bg-neutral-50 dark:bg-neutral-800 duration-300 sticky -top-[1px] transition">
+      <div class="py-4 md:py-6 px-6 md:px-16 relative after:absolute after:bg-gradient-to-b after:bottom-0 after:content-[''] after:duration-300 after:from-neutral-50 dark:after:from-neutral-800 after:from-0% after:h-5 md:after:h-6 after:left-0 after:pointer-events-none after:to-[rgba(255,255,255,0)] after:to-100% after:transition after:translate-y-full after:w-full">
+        <input
+          class="bg-transparent border border-neutral-500 outline-none pl-10 p-4 py-2 md:py-3 focus:outline-purple-200 rounded-md md:text-lg w-full"
+          placeholder="search all coins..."
+          type="text"
+          v-model="searchText"
+        >
 
-      <span class="inline-flex absolute left-3 top-[calc(50%-12px)]">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-        </svg>
-      </span>
-    </div>
+        <span class="absolute inline-flex left-8 md:left-[4.5rem] top-[calc(50%-12px)]">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
+        </span>
+      </div>
+    </div>   
 
-    <ul v-if="!isLoading">
+    <ul v-if="!isLoading" class="px-6 md:px-16 md:gap-x-8 md:grid min-[840px]:grid-cols-[repeat(2,minmax(325px,1fr))]">
       <CoinVue
         v-for='coin in filteredCoins'
         :coin='coin' 
         :key="coin.id"
+        class="place-items-start h-fit"
       />
 
-      
-      <p v-if="noSearchFound" class="px-4 py-10 text-neutral-500">no coins found</p>
+      <p v-if="noSearchFound" class="px-4 py-10 text-neutral-500 dark:text-neutral-400">no coins found</p>
     </ul>
     
     <Loader v-if="isLoading" />
-    <p v-if="isLoadingError" class="px-4 py-10 text-neutral-500">an error occured with getting data, please try again 😕</p>
+    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">an error occured with getting data, please try again 😕</p>
   </div>
 </template>
 
@@ -46,7 +48,7 @@ const isLoadingError = computed<boolean>(() => store.state.isLoadingError);
 
 const searchText = ref<string>('');
 const filteredCoins = ref<Array<Coin>>(coins.value);
-const noSearchFound = computed<boolean>(() => searchText.value.length > 0 && filteredCoins.value.length === 0);
+const noSearchFound = computed<boolean>(() => searchText.value.trim().length > 0 && filteredCoins.value.length === 0);
 
 watch([ searchText, coins ], () => {
   filteredCoins.value = coins.value.filter(coin => { 

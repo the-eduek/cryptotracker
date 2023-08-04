@@ -1,6 +1,6 @@
 <template>
-  <div class="p-6 pb-18 md:pb-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
-    <ul class="m-auto">
+  <div class="p-6 md:px-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
+    <ul>
       <CoinVue
         v-for='coin in savedCoins'
         :coin='coin'
@@ -9,8 +9,35 @@
 
     <Loader v-if="isLoading" />
 
-    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-10 text-neutral-500">an error occured with getting data, please try again 😕</p>
-    <p v-if="!savedCoins.length && !isLoadingError && !isLoading" class="px-4 py-10 text-neutral-500">coins you add to your watchlist will appear here!</p>
+    <div v-if="!savedCoins.length && !isLoadingError && !isLoading" class="flex flex-col items-center">
+      <div class="p-8 max-w-lg">
+        <img src="../assets/img/img2.svg" alt="">
+      </div>
+
+      <p class="px-4 py-6 text-neutral-500 dark:text-neutral-400">coins added to your watchlist will appear here!</p> 
+
+      <div class="py-4">
+        <router-link :to="{ name: 'CoinsList' }" class="bg-purple-600 cursor-pointer flex items-center font-medium group px-8 py-3 rounded-md text-white">
+          <span>see all coins</span>
+
+          <div class="flex h-4 ml-2 overflow-hidden w-4">
+            <span class="-translate-x-full duration-300 transition group-hover:translate-x-0">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4">
+                <path stroke-linecap="round" stroke-lineoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+
+            <span class="-translate-x-full transition group-hover:translate-x-full">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+          </div>          
+        </router-link>
+      </div>
+    </div>
+
+    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">an error occured with getting data, please try again 😕</p>
   </div>
 </template>
 

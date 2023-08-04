@@ -4,10 +4,11 @@ export default {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        'space': `'Space Grotesk', 'sans-serif'`
+        'grotesk': `'Space Grotesk', 'sans-serif'`
       }
     },
   },

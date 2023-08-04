@@ -1,18 +1,13 @@
 <template>
-  <div class="bg-black/10 backdrop-blur-[1.5px] fixed flex h-full left-0 top-0 w-full z-20" @click.self="closeModal">
-    <div class="bg-purple-500 mt-auto w-full">
-      <div class="flex flex-col items-center m-auto max-w-5xl px-6 py-10 relative rounded-t-2xl text-white ">
-        <button @click="closeModal" class="absolute bg-neutral-50 border p-1.5 right-4 rounded-full text-red-600 top-4" title="close" type="button">
-          <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.0625 10.9375L10.9375 3.06247" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M3.0625 3.06247L10.9375 10.9375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </button>
-        
-        <p class="font-medium pb-54 text-3xl md:text-4xl">{{ amt.toFixed(3) }} {{ coinType }}</p>
+  <div class="backdrop-blur-[1.5px] fixed flex h-full left-0 top-0 w-full z-20" @click.self="closeModal">
+    <div class="bg-purple-500 h-2/3 mt-auto rounded-t-3xl shadow-lg transition w-full" ref="modalContent">
+      <div class="flex h-full items-center justify-center m-auto max-w-5xl px-6 py-14 relative text-white">
+        <button @click="closeModal" class="absolute bg-neutral-50 border cursor-pointer  max-w-[10rem] mb-auto p-0.5 rounded-full top-5 w-1/3" title="close" type="button">  </button>
 
-        <div class="flex-1 p-4 max-w-md w-4/5">
-          <img src="../assets/img/img2.svg" class=" h-full object-contain object-bottom w-full" alt="">
+        <div class="w-full">
+          <p class="font-medium text-3xl md:text-4xl">{{ amtFrom.toLocaleString() }} {{ currencyType }}</p>
+          <p class="font-medium py-10 text-5xl tracking-[-0.625rem]  ">==</p>
+          <p class="font-medium text-3xl md:text-4xl">{{ Number(amtTo.toFixed(3)).toLocaleString() }} {{ coinType }}</p>
         </div>
       </div>
     </div>
@@ -21,11 +16,14 @@
 </template>
 
 <script setup lang="ts">
-import { onUnmounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
+import detectSwipe from '../functions/detectSwipe';
 
 interface Props {
   coinType: string;
-  amt: number;
+  currencyType: string;
+  amtTo: number;
+  amtFrom: number;
 };
 
 const props = defineProps<Props>();
@@ -39,7 +37,28 @@ function closeModal() : void {
   emit('closeEvent');
 };
 
+function escCloseModal(e: KeyboardEvent) : void {
+  if (e.key.toLowerCase() === 'escape') closeModal();
+};
+
+onMounted(() => {
+  window.addEventListener('keyup', escCloseModal);
+});
+
 onUnmounted(() => {
   emit("clearEvent");
+  window.removeEventListener('keyup', escCloseModal)
+});
+
+const modalContent = ref<HTMLDivElement | null>(null);
+
+onMounted(() => {
+  if (modalContent.value) {
+    detectSwipe(modalContent.value, () => {
+      console.log("hello")
+    }, () => {
+      closeModal();
+    });
+  }
 });
 </script>

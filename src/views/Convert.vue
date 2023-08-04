@@ -1,10 +1,11 @@
 <template>
   <div class="p-6 sm:px-10 md:px-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">    
-    <form class="m-auto pt-4 md:pt-6 pb-20 relative" @submit.prevent="calculate(amount)">
-      <div class="bg-white m-auto relative">
+    <form class="m-auto pt-4 md:pt-6 pb-20" @submit.prevent="calculate(amount)">
+      <div class="bg-white dark:bg-neutral-700 duration-300 m-auto relative transition">
         <input
-          class="bg-transparent border border-neutral-500 outline-none p-4 py-2 md:py-3 rounded-md focus:outline-purple-200 md:text-lg w-full"
+          :class="['appearance-none bg-transparent border border-neutral-500 outline-none p-4 py-2 md:py-3 rounded-md focus:outline-purple-200 dark:focus:outline-purple-50 md:text-lg w-full']"
           min="1"
+          name="amount"
           placeholder="enter amount here"
           ref="amtInput"
           type="number"
@@ -19,10 +20,10 @@
         </Transition>
       </div>
 
-      <div class="flex flex-col md:flex-row items-center py-10 md:py-14 md:justify-center">
+      <div class="flex flex-col md:flex-row items-center py-14 md:justify-center">
         <div>
-          <label class="block font-medium" for="crypto">select currency to convert from</label>
-          <select class="border border-neutral-300 my-2 p-2 md:p-3 rounded-md md:text-lg" v-model="convertFrom" name="currency" title="currency">
+          <label class="block font-medium" for="currency">select currency to convert from</label>
+          <select class=" dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertFrom" name="currency" title="currency to convert from">
             <option value="NGN">Nigerian Naira [NGN]</option>
             <option value="USD">US Dollar [USD]</option>
             <option value="GBP">British Pound [GBP]</option>
@@ -38,7 +39,7 @@
 
         <div>
           <label class="block font-medium" for="crypto">select crypto to convert to</label>
-          <select class="border border-neutral-300 my-2 p-2 md:p-3 rounded-md md:text-lg" v-model="convertTo" title="crpyto" name="crypto">
+          <select class="dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertTo" name="crypto" title="crpyto to convert to">
             <option value='BNB'>Binance [BNB]</option>
             <option value='BTC'>Bitcoin [BTC]</option>
             <option value="ADA">Cardano [ADA]</option>
@@ -52,17 +53,21 @@
       </div>
 
       <div>
-        <button class="bg-purple-700 font-medium px-2 py-4 md:py-5 rounded text-lg md:text-xl text-white w-2/3 max-w-sm" type="submit">Convert</button>
+        <button class="bg-purple-600 font-medium dark:outline-purple-50  px-2 py-4 md:py-5 rounded text-lg md:text-xl text-white w-2/3 max-w-sm" type="submit">Convert</button>
       </div>
     </form>
 
-    <ConvertModal 
-      v-if="showModal"
-      @clearEvent="clearInput"
-      @closeEvent="toggleModal"
-      :amt="convertedAmt"
-      :coinType="convertTo"
-    />
+    <Transition name="slide-in">
+      <ConvertModal 
+        v-if="showModal"
+        @clearEvent="clearInput"
+        @closeEvent="toggleModal"
+        :amtFrom="<number>amount"
+        :amtTo="convertedAmt"
+        :coinType="convertTo"
+        :currencyType="convertFrom"
+      />
+    </Transition>
   </div>
 </template>
 
@@ -70,7 +75,7 @@
 import { ref, onMounted } from 'vue';
 import ConvertModal from '../components/ConvertModal.vue';
 import Toast from '../components/Toast.vue';
-import fetchData from '../api/fetchData';
+import fetchData from '../functions/fetchData';
 import { ErrorType, CoinRate } from '../types';
 
 const amount = ref<number>();
