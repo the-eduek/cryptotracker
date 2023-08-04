@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue';
 import { createStore, useStore as vuexUseStore,  Store } from 'vuex';
-import { Coin, State, ThemeType } from '../types';
+import { Coin, CurrencyName, State, ThemeType } from '../types';
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
@@ -26,6 +26,9 @@ export const store = createStore<State>({
     },
     setCoins(state: State, data: Array<Coin>) : void  {
       state.coins = data;
+    },
+    setCurrency(state: State, data: CurrencyName) : void  {
+      state.currency = data;
     },
     setSavedCoins(state: State, data: Array<Coin>) : void  {
       state.savedCoins = data;

@@ -7,7 +7,7 @@
     <div class="pl-2 pr-1 md:px-4 w-full">
       <div class="flex items-start justify-between">
         <p class="font-bold text-sm mr-4">{{coin.symbol}}</p>
-        <p class="font-medium">₦ {{ formatNumber(coin.price) }}</p>
+        <p class="font-medium">{{ CurrencySymbol[currency] }} {{ formatNumber(coin.price) }}</p>
       </div>  
 
       <div class="flex items-start justify-between pt-0.5">
@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useStore } from '../store';
-import { Coin } from '../types';
+import { Coin, CurrencyName, CurrencySymbol } from '../types';
 
 interface Props {
   coin: Coin;
@@ -41,7 +41,8 @@ interface Props {
 const props = defineProps<Props>();
 
 const store = useStore();
-  
+
+const currency = computed<CurrencyName>(() => store.state.currency);
 const savedCoins = computed<Coin[]>(() => store.state.savedCoins);
 const isFavCoin = computed<boolean>(() => savedCoins.value.some(coin => coin.id === props.coin.id));
 

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeMount } from 'vue';
+import { computed, watch } from 'vue';
 import { useStore } from './store';
 import { Coin, CurrencyName } from './types';
 import getCoins from './functions/getCoins'; 
@@ -25,9 +25,9 @@ const store = useStore();
 const currency = computed<CurrencyName>(() => store.state.currency);
 const localSavedCoins = <Array<number>>JSON.parse(localStorage.getItem('localSavedCoins') || "[]");
 
-
-onBeforeMount(async () => {
+watch(currency, async () => {
   const uri = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=${currency.value}`;
+  store.commit('setIsLoading', true);
 
   try {
     const allCoins : Array<Coin> = await getCoins(uri, currency.value);
@@ -40,5 +40,7 @@ onBeforeMount(async () => {
   };
 
   store.commit('setIsLoading', false);
+}, {
+  immediate: true
 });
 </script>

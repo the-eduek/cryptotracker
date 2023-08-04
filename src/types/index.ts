@@ -22,10 +22,6 @@ export interface CoinRate {
 
 export type CurrencyName = 'NGN' | 'USD' | 'EUR' | 'GBP';
 
-export type CurrencySymbol = '₦' | '$' | '€' | '£';
-
-export type CurrencyInfo = Record<CurrencyName, { name: CurrencyName, symbol: CurrencySymbol }>;
-
 export type ExchangeRate = Record<CurrencyName, number>;
 
 export enum ErrorType {
@@ -38,21 +34,9 @@ export enum ThemeType {
   'dark'
 };
 
-export const allCurrencies: CurrencyInfo = {
-  NGN: {
-    name: 'NGN',
-    symbol: '₦'
-  },
-  USD: {
-    name: 'USD',
-    symbol: '$'
-  },
-  EUR: {
-    name: 'EUR',
-    symbol: '€'
-  },
-  GBP: {
-    name: 'GBP',
-    symbol: '£'
-  }
+export enum CurrencySymbol {
+  'NGN' = '₦',
+  'USD' = '$',
+  'EUR' = '€',
+  'GBP' = '£'
 };
