@@ -21,16 +21,18 @@ import Header from '../src/components/Header.vue';
 import Nav from '../src/components/Nav.vue';
 
 const store = useStore();
-
 const currency = computed<CurrencyName>(() => store.state.currency);
-const localSavedCoins = <Array<number>>JSON.parse(localStorage.getItem('localSavedCoins') || "[]");
-const localCurrency = <CurrencyName>JSON.parse(localStorage.getItem('localCurrency') || "null");
+
+onBeforeMount(() => {
+  const localCurrency = <CurrencyName | null>localStorage.getItem('localCurrency');
+  if (localCurrency) store.commit('setCurrency', localCurrency);
+});
 
 watch(currency, async () => {
-  if (localCurrency) store.commit('setCurrency', localCurrency);
-
-  const uri = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=${currency.value}`;
   store.commit('setIsLoading', true);
+
+  const localSavedCoins = <Array<number>>JSON.parse(localStorage.getItem('localSavedCoins') || "[]");
+  const uri = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=${currency.value}`;
 
   try {
     const allCoins : Array<Coin> = await getCoins(uri, currency.value);
@@ -43,8 +45,6 @@ watch(currency, async () => {
   };
 
   store.commit('setIsLoading', false);
-}, {
-  immediate: true
 });
 
 const theme = computed<ThemeType>(() => store.state.theme);

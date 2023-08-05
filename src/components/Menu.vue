@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useStore } from '../store';
 import { CurrencyName, ThemeType } from '../types';
 
@@ -85,6 +85,6 @@ const currencyVal = ref<CurrencyName>(store.state.currency);
 
 watch(currencyVal, () => {
   store.commit('setCurrency', currencyVal.value);
-  localStorage.setItem('localCurrency', JSON.stringify(currencyVal.value));
+  localStorage.setItem('localCurrency', currencyVal.value);
 });
 </script>
