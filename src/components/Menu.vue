@@ -2,7 +2,7 @@
   <div class="duration-300 fixed h-full left-0 top-0 transition w-full z-20">
     <div class="backdrop-blur-sm bg-black/10 dark:bg-white/10 duration-300 flex h-full overflow-y-auto p-4 md:px-6 py-12 relative transition w-full" @click.self="closeSettings">
       <div class="bg-white dark:bg-zinc-800 border border-neutral-300 dark:border-neutral-600 max-w-3xl my-auto mx-auto px-4 md:px-6 py-10 md:py-14 relative rounded-lg shadow-lg w-full">
-        <div class="flex items-center justify-between pb-10">
+        <div class="flex items-center justify-between pb-8">
           <h4 class="font-medium">settings</h4>
           
           <button @click="closeSettings" class="bg-neutral-50 dark:bg-transparent border dark:border-neutral-500 flex p-1 right-4 rounded-full text-red-600 top-4" title="close" type="button">
@@ -14,7 +14,7 @@
         </div>
 
         <div class="pb-8">
-          <p class="text-sm">cryptotracker is a web app for viewing a list of top performing cryptocurrencies by market volume. users can add currencies they are interested in to a watchlist. users can also make some conversions from selected currencies to their saved coins or the more popular coins.</p>
+          <p class="text-sm">cryptotracker gives users a list of top performing cryptocurrencies by market volume. users can add currencies they are interested in to a watchlist without the need for signing up or logging in. users can also make conversions from selected currencies to crypto coins in their watchlist or the more popular crypto coins.</p>
         </div>
 
         <div class="flex items-center pb-8">
