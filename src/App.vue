@@ -26,6 +26,7 @@ const currency = computed<CurrencyName>(() => store.state.currency);
 onBeforeMount(() => {
   const localCurrency = <CurrencyName | null>localStorage.getItem('localCurrency');
   if (localCurrency) store.commit('setCurrency', localCurrency);
+  else store.commit('setCurrency', 'NGN');
 });
 
 watch(currency, async () => {
