@@ -80,19 +80,7 @@ import Toast from '../components/Toast.vue';
 
 const store  = useStore();
 const savedCoins = computed<Array<Coin>>(() => store.state.savedCoins);
-
-const amount = ref<number>();
-const amtInput = ref<HTMLInputElement | null>(null);
-const convertedAmt = ref<number>(0);
-const convertFrom = ref<string>(store.state.currency);
-const convertTo = ref<string>('BTC');
-const showModal = ref<boolean>(false);
-
-const rates = ref<CoinRate>();
-const isError = ref<boolean>(false);
-const toastError = ref<ErrorType>(ErrorType.networkError);
-
-const convertOptions = computed<Array<Coin> | Array<{name: string, symbol: 'BTC' | 'ETH' | 'SOL'}>>(() => {
+const convertOptions = computed<Array<Coin> | Array<{name: string, symbol: 'BTC' | 'ETH' | 'SOL' | 'USDT' }>>(() => {
   if (savedCoins.value.length) return savedCoins.value;
   else return [
     {
@@ -106,9 +94,25 @@ const convertOptions = computed<Array<Coin> | Array<{name: string, symbol: 'BTC'
     {
       name: 'Solana',
       symbol: 'SOL'
+    },
+    {
+      name: 'Tether',
+      symbol: 'USDT'
     }
   ];
 });
+
+
+const amount = ref<number>();
+const amtInput = ref<HTMLInputElement | null>(null);
+const convertedAmt = ref<number>(0);
+const convertFrom = ref<string>(store.state.currency);
+const convertTo = ref<string>(convertOptions.value[0].symbol);
+const showModal = ref<boolean>(false);
+
+const rates = ref<CoinRate>();
+const isError = ref<boolean>(false);
+const toastError = ref<ErrorType>(ErrorType.networkError);
 
 onMounted(() => {
   const uri : string = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${convertOptions.value.map(coin => coin.symbol)}&tsyms=USD,EUR,NGN,GBP`;
