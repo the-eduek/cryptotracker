@@ -30,7 +30,7 @@
 
         <div class="md:flex md:items-center">
           <label class="font-medium text-sm mr-3.5" for="currency">select default currency</label>
-          <select class="dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 mt-1 p-1 rounded-md" name="currency" id="" v-model="currencyVal">
+          <select class="bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 mt-1 p-1 rounded-md" name="currency" id="" v-model="currencyVal">
             <option value="NGN">nigerian naira [NGN]</option>
             <option value="USD">us dollar [USD]</option>
             <option value="EUR">european euro [EUR]</option>

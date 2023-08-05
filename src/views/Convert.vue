@@ -23,7 +23,7 @@
       <div class="flex flex-col md:flex-row items-center py-14 md:justify-center">
         <div>
           <label class="block font-medium" for="currency">select currency to convert from</label>
-          <select class=" dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertFrom" name="currency" title="currency to convert from">
+          <select class="bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertFrom" name="currency" title="currency to convert from">
             <option value="NGN">Nigerian Naira [NGN]</option>
             <option value="USD">US Dollar [USD]</option>
             <option value="GBP">British Pound [GBP]</option>
@@ -39,7 +39,7 @@
 
         <div>
           <label class="block font-medium" for="crypto">select crypto to convert to</label>
-          <select class="dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertTo" name="crypto" title="crpyto to convert to">
+          <select class="bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-500 duration-300 my-2 dark:outline-purple-50 p-2 md:p-3 rounded-md md:text-lg transition" v-model="convertTo" name="crypto" title="crpyto to convert to">
             <option 
               v-for="(coin, index) in convertOptions"
               :key="index" 
