@@ -1,14 +1,19 @@
 <template>
   <div class="p-6 md:px-16 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
-    <ul v-if="!isLoading" class="md:grid">
+    <ul v-if="!isLoading" class="md:grid md:pt-3">
       <CoinVue
-        v-for='coin in filteredCoins'
+        v-for='coin in sortedCoins'
         :coin='coin'
       />
     </ul>
 
     <Loader v-if="isLoading" />
-    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">an error occured with getting data, please try again 😕</p>
+
+    <div v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">
+       <p>an error occured with getting data 😕</p>
+       <p>please refresh to try again</p>
+    </div>
+
     <div v-if="!savedCoins.length && !isLoadingError && !isLoading" class="flex flex-col items-center">
       <div class="p-8 max-w-lg">
         <img src="../assets/img/img2.svg" alt="">
@@ -53,5 +58,5 @@ const savedCoins = computed<Array<Coin>>(() => store.state.savedCoins);
 const isLoading = computed<boolean>(() => store.state.isLoading);
 const isLoadingError = computed<boolean>(() => store.state.isLoadingError);
 
-const filteredCoins = computed(() => savedCoins.value.sort((a: Coin, b: Coin) => b.percentage - a.percentage));
+const sortedCoins = computed(() => savedCoins.value.sort((a: Coin, b: Coin) => b.percentage - a.percentage));
 </script>

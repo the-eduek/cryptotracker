@@ -1,7 +1,7 @@
 <template>
   <div class="py-6 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
-    <div class="bg-neutral-50 dark:bg-neutral-800 duration-300 sticky -top-[1px] transition">
-      <div class="py-4 md:py-6 px-6 md:px-16 relative after:absolute after:bg-gradient-to-b after:bottom-0 after:content-[''] after:duration-300 after:from-neutral-50 dark:after:from-neutral-800 after:from-0% after:h-5 md:after:h-6 after:left-0 after:pointer-events-none after:to-[rgba(255,255,255,0)] after:to-100% after:transition after:translate-y-full after:w-full">
+    <div class="bg-neutral-50 dark:bg-neutral-900 duration-300 sticky -top-[1px] transition">
+      <div class="py-4 md:py-6 md:mb-2 px-6 md:px-16 relative after:absolute after:bg-gradient-to-b after:bottom-0 after:content-[''] after:duration-300 after:from-neutral-50 dark:after:from-neutral-900 after:from-0% after:h-5 md:after:h-6 after:left-0 after:pointer-events-none after:to-[rgba(255,255,255,0)] after:to-100% after:transition after:translate-y-full after:w-full">
         <input
           class="bg-transparent border border-neutral-500 outline-none pl-10 p-4 py-2 md:py-3 focus:outline-purple-200 rounded-md md:text-lg w-full"
           placeholder="search all coins..."
@@ -17,19 +17,23 @@
       </div>
     </div>   
 
-    <ul v-if="!isLoading" class="px-6 md:px-16 md:gap-x-8 md:grid min-[840px]:grid-cols-[repeat(2,minmax(325px,1fr))]">
+    <ul v-if="!isLoading" class="md:gap-x-6 md:grid min-[840px]:grid-cols-[repeat(2,minmax(325px,1fr))] px-6 md:px-16 ">
       <CoinVue
         v-for='coin in filteredCoins'
         :coin='coin' 
         :key="coin.id"
         class="place-items-start h-fit"
       />
-
-      <p v-if="noSearchFound" class="px-4 py-10 text-neutral-500 dark:text-neutral-400">no coins found</p>
     </ul>
+
+    <p v-if="coins.length > 0 && noSearchFound" class="px-4 py-10 text-neutral-500 dark:text-neutral-400">no coins found</p>
     
     <Loader v-if="isLoading" />
-    <p v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">an error occured with getting data, please try again 😕</p>
+
+    <div v-if="isLoadingError && coins.length === 0" class="px-4 py-20 text-neutral-500 dark:text-neutral-400">
+       <p>an error occured with getting data 😕</p>
+       <p>please refresh to try again</p>
+    </div>
   </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
   <header class="flex justify-between pt-12 px-6 md:px-16 m-auto max-w-5xl text-left">
     <div class="flex font-bold items-center text-[22px] sm:text-[1.725rem]">
-      <span class="text-purple-600 tracking-tighter whitespace-nowrap">crypt
+      <p class="text-purple-600 dark:text-neutral-200 tracking-tighter whitespace-nowrap">crypt
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 sm:h-[1.125rem] inline -ml-[5px] sm:-ml-1.5 -mr-[1.5px] -mt-[1px] w-4 sm:w-[1.125rem]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>tracker
-      </span>
+      </p>
     </div>
 
     <button @click="toggleModal" title="settings" type="button">
