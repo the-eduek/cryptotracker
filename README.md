@@ -106,8 +106,21 @@ cryptotracker gives users a list of top performing cryptocurrencies by market vo
 
 - dark mode for improved accessibility
 
+	
 
-  
+## updates
+
+#### filter and sort coins
+
+  users can now filter out coins they want to see by losers and gainers and this is automatically sorted by loss/gain percentage. users can now sort coins by market volume or price.
+
+  ||
+  | ------------- |
+  | <img title='coins page screenshot' src='./docs/img/coins_2.jpeg' /> |
+  | coins page modal screenshot (v 2.0) |
+
+
+
 ## project setup
 
 this project is built with Vue 3 + TypeScript, Tailwind CSS

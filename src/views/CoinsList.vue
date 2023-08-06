@@ -29,7 +29,7 @@
               <path d="M3.5 6H13.5M1 1H16M6 11H11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
 
-            <span class="bg-purple-100/50 dark:bg-neutral-800 ml-2.5 px-2 py-0.5 rounded-lg text-sm md:text-base whitespace-nowrap">{{ filterProp === "all" ? 'all coins' : filterProp }}</span>
+            <span class="bg-neutral-100 dark:bg-neutral-800 ml-2.5 px-2 py-0.5 rounded-lg text-sm md:text-base whitespace-nowrap">{{ filterProp === "all" ? 'all coins' : filterProp }}</span>
           </label>
         </div>
 
