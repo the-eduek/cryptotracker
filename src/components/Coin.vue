@@ -1,5 +1,5 @@
 <template>
-  <li :class="['border flex items-center my-6 md:my-3 last:mb-20 md:last:mb-[5.5rem] px-4 py-5 rounded-md shadow-inner hover:shadow-none transition', { 'bg-purple-50/75 dark:bg-zinc-700 border-purple-400 dark:border-neutral-600 shadow-none transition': isFavCoin }, { 'bg-white dark:bg-zinc-800 dark:border-neutral-700': !isFavCoin }]">
+  <li :class="['border duration-250  0 flex items-center my-6 md:my-3 last:mb-20 md:last:mb-[5.5rem] px-4 py-5 rounded-md shadow-inner hover:shadow-none transition', { 'bg-purple-50/75 dark:bg-zinc-700 border-purple-400 dark:border-neutral-600 shadow-none transition': isFavCoin }, { 'bg-white dark:bg-zinc-800 dark:border-neutral-700': !isFavCoin }]">
     <div class="h-0 min-[280px]:h-8 md:h-12 w-0 min-[280px]:w-8 md:w-12">
       <img :src="coin.img" :alt="coin.symbol +' img'">
     </div>
@@ -37,7 +37,7 @@ const props = defineProps<Props>();
 
 const store = useStore();
 
-const currency = computed<CurrencyName>(() => store.state.currency);
+const currency = computed<CurrencyName>(() => store.state.currency!);
 const savedCoins = computed<Coin[]>(() => store.state.savedCoins);
 const isFavCoin = computed<boolean>(() => savedCoins.value.some(coin => coin.id === props.coin.id));
 

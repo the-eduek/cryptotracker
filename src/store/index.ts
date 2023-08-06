@@ -8,7 +8,7 @@ export const store = createStore<State>({
   state() : State {
     return {
       coins: [],
-      currency: 'USD', 
+      currency: null, 
       savedCoins: [],
       isLoading: true,
       isLoadingError: false,

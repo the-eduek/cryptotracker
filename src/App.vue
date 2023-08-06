@@ -21,7 +21,7 @@ import Header from '../src/components/Header.vue';
 import Nav from '../src/components/Nav.vue';
 
 const store = useStore();
-const currency = computed<CurrencyName>(() => store.state.currency);
+const currency = computed<CurrencyName>(() => store.state.currency!);
 
 onBeforeMount(() => {
   const localCurrency = <CurrencyName | null>localStorage.getItem('localCurrency');

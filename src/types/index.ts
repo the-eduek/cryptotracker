@@ -9,7 +9,7 @@ export interface Coin {
 
 export interface State {
   coins: Array<Coin>;
-  currency: CurrencyName;
+  currency: CurrencyName | null;
   savedCoins: Array<Coin>;
   isLoading: boolean;
   isLoadingError: boolean;

@@ -81,7 +81,7 @@ onUnmounted(() => {
   window.removeEventListener('keyup', escCloseModal)
 });
 
-const currencyVal = ref<CurrencyName>(store.state.currency);
+const currencyVal = ref<CurrencyName>(store.state.currency!);
 
 watch(currencyVal, () => {
   store.commit('setCurrency', currencyVal.value);
