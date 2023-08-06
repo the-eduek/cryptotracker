@@ -1,6 +1,6 @@
 <template>
-  <div class="duration-300 fixed h-full left-0 top-0 transition w-full z-20">
-    <div class="backdrop-blur-sm bg-black/10 dark:bg-white/10 duration-300 flex h-full overflow-y-auto p-4 md:px-6 py-12 relative transition w-full" @click.self="closeSettings">
+  <div class="fixed h-full left-0 top-0 w-full z-20">
+    <div class="backdrop-blur-sm bg-black/10 dark:bg-white/10 flex h-full overflow-y-auto p-4 md:px-6 py-12 relative w-full" @click.self="closeSettings">
       <div class="bg-white dark:bg-zinc-800 border border-neutral-300 dark:border-neutral-600 max-w-3xl my-auto mx-auto px-4 md:px-6 py-10 md:py-14 relative rounded-lg shadow-lg w-full">
         <div class="flex items-center justify-between pb-8">
           <h4 class="font-medium">settings</h4>

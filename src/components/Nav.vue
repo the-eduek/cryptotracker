@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white dark:bg-zinc-800 border-t border-purple-600 dark:border-neutral-600 bottom-0 duration-300 fixed left-0 pt-2.5 pb-5 shadow-lg dark:text-stone-400 transition w-full z-10"> 
+  <footer class="bg-white dark:bg-zinc-800 border-t border-purple-600 dark:border-neutral-600 bottom-0 fixed left-0 pt-2.5 pb-5 shadow-lg dark:text-stone-400 w-full z-10"> 
     <div class="flex justify-around m-auto max-w-5xl">
       <div>
         <router-link :to="{ name: 'Home' }" class="cursor-pointer flex flex-col items-center justify-center p-1">
