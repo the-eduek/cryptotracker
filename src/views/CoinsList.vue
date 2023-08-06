@@ -10,8 +10,8 @@
           v-model="searchText"
           >
 
-          <span class="absolute inline-flex left-2.5 md:left-3 top-[calc(50%-12px)]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <span class="absolute inline-flex left-2.5 md:left-3 top-[calc(50%-10px)]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
           </span>
@@ -25,7 +25,7 @@
           </select>
           
           <label for="filter" :class="[ 'bg-transparent border border-neutral-500 flex items-center ml-2 md:ml-3 outline-none py-2 px-3 md:p-3 peer-focus:outline-purple-200 rounded-md', { 'text-green-600 dark:text-green-500' : filterProp === 'gainers' }, { 'text-red-500 dark:text-red-400' : filterProp === 'losers' }]">            
-            <svg viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="h-[1.125rem] md:h-5 w-[1.125rem] md:w-5">
+            <svg viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="h-4 w-4">
               <path d="M3.5 6H13.5M1 1H16M6 11H11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
 
