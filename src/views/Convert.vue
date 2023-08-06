@@ -80,26 +80,26 @@ import Toast from '../components/Toast.vue';
 
 const store  = useStore();
 const savedCoins = computed<Array<Coin>>(() => store.state.savedCoins);
-const convertOptions = computed<Array<Coin> | Array<{name: string, symbol: 'BTC' | 'ETH' | 'SOL' | 'USDT' }>>(() => {
-  if (savedCoins.value.length) return savedCoins.value;
+const convertOptions = computed<Array<Coin> | Array<{name: string, symbol: string }>>(() => {
+  if (savedCoins.value.length > 3) return savedCoins.value;
   else return [
-    {
-      name: 'Bitcoin',
-      symbol: 'BTC'
-    },
-    {
-      name: 'Ethereum',
-      symbol: 'ETH'
-    },
-    {
-      name: 'Solana',
-      symbol: 'SOL'
-    },
-    {
-      name: 'Tether',
-      symbol: 'USDT'
-    }
-  ];
+      {
+        name: 'Bitcoin',
+        symbol: 'BTC'
+      },
+      {
+        name: 'Ethereum',
+        symbol: 'ETH'
+      },
+      {
+        name: 'Solana',
+        symbol: 'SOL'
+      },
+      {
+        name: 'Tether',
+        symbol: 'USDT'
+      }
+    ].concat(savedCoins.value).reverse();
 });
 
 
