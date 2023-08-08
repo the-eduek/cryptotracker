@@ -1,7 +1,7 @@
 <template>
-  <div class="py-6 m-auto min-h-[calc(100vh-5rem)] max-w-5xl overflow-hidden">
+  <div class="py-6 m-auto min-h-[calc(100vh-5rem)] max-w-5xl">
     <div class="bg-neutral-50 dark:bg-neutral-900 sticky -top-[1px]">
-      <div class="flex items-center md:mb-2 py-4 md:py-6 px-6 md:px-16 after:absolute after:bg-gradient-to-b after:bottom-0 after:content-[''] after:from-neutral-50 dark:after:from-neutral-900 after:from-0% after:h-5 md:after:h-6 after:left-0 after:pointer-events-none after:to-[rgba(255,255,255,0)] after:to-100% after:translate-y-full after:w-full">
+      <div class="flex items-center md:mb-2 overflow-x-hidden py-4 md:py-6 px-6 md:px-16 after:absolute after:bg-gradient-to-b after:bottom-0 after:content-[''] after:from-neutral-50 dark:after:from-neutral-900 after:from-0% after:h-5 md:after:h-6 after:left-0 after:pointer-events-none after:to-[rgba(255,255,255,0)] after:to-100% after:translate-y-full after:w-full">
         <div class="flex-grow relative">
           <input
             class="bg-transparent border border-neutral-500 outline-none pl-10 p-4 py-2 md:py-3 focus:outline-purple-200 rounded-md md:text-lg w-full"
