@@ -100,7 +100,7 @@ cryptotracker gives users a list of top performing cryptocurrencies by market vo
   ||||
   | ------------- | ------------- | ------------- |
   | <img title='watchlist page desktop screenshot' src='./docs/img/watchlist_lg.jpeg' /> | <img title='coins page desktop screenshot' src='./docs/img/home_lg.jpeg' /> | <img title='convert page desktop screenshot' src='./docs/img/convert_lg.jpeg' /> |
-  | watchlist page error screenshot (v 2.0) | coins page desktop screenshot (v 2.0) | convert page desktop screenshot (v 2.0) |
+  | watchlist page desktop screenshot (v 2.0) | coins page desktop screenshot (v 2.0) | convert page desktop screenshot (v 2.0) |
 
 
 
